@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Провинция: 충남 Город: 당진시</title>
+
+  <link rel="stylesheet" href="/styles.css">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  
+  <script>
+    $(document).ready(function() {
+          
+
+      $.get("http://localhost:3000/api", function(data) {
+        // Handle the response data here
+           console.log(data);
+            // Access the array of objects
+            var vacancies = data;
+                               // Remove existing content
+            $("#vacancies").html('');
+        
+
+        // Iterate over each object in the array
+        vacancies.forEach(function(vacancy, index) {
+          // Access the properties of each object
+          var title = vacancy.vocansy.Title.join(", ");
+          var city1 = vacancy.vocansy.City1;
+          var city2 = vacancy.vocansy.City2;
+          var Date = vacancy.vocansy.Date.join(", ");
+          var descr = vacancy.vocansy.Descr.join(", ");
+
+          // Create HTML elements for each object
+          var container = $("<div class='vacancy'>");
+          container.append("<h2>Вакансия " + (index + 1) + ":</h2>");
+          container.append("<p><strong>Название:</strong> " + title + "</p>");
+          container.append("<p><strong>Провинция:</strong> " + city1 + "</p>");
+          container.append("<p><strong>Город:</strong> " + city2 + "</p>");
+          container.append("<p><strong>Дата:</strong> " + Date + "</p>");
+          container.append("<p><strong>Описание:</strong> " + descr + "</p>");
+
+          // Append the container to the page
+          $("#vacancies").append(container);
+        });
+
+        data = [];
+      });
+    });
+  </script>
+</head>
+<body>
+  <h1>Провинция: 충남 Город: 당진시</h1>
+
+  <div id="vacancies">
+    <!-- Vacancies will be added dynamically here -->
+  </div>
+</body>
+</html>
