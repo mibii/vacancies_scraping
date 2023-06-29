@@ -2,7 +2,6 @@ const geturls =   require('./scrapePage.js')
 const scrapePage = require('./scraper');
 const express = require('express');
 const path = require('path');
-
 const app = express();
 const port = 3000;
 
